@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "674847741504",
+    "project_id": "flutter-firebase-tutoria-91da0",
+    "storage_bucket": "flutter-firebase-tutoria-91da0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674847741504:android:8cbd254f4f8b6e918531a5",
+        "android_client_info": {
+          "package_name": "com.example.flutterfire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674847741504-m1le81tudclsavpnu4vfsqjq936r0h3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutterfire",
+            "certificate_hash": "734a9e554850d653b5e41a1c6a4d99f03fa042a9"
+          }
+        },
+        {
+          "client_id": "674847741504-p7i12gekccjf8cnves15n0r7knamsmvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBOqUxt6MHeqMRK57bzXCA5ulKqDXS_Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674847741504-p7i12gekccjf8cnves15n0r7knamsmvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
