@@ -11,16 +11,35 @@ void main() async {
 class MyHomePage extends StatelessWidget {
   final String name;
   final String age;
+  int counter = 0;
 
   MyHomePage(this.name, this.age);
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance.collection("users");
+    CollectionReference users = FirebaseFirestore.instance.collection("akil");
+    FirebaseFirestore.instance
+        .collection('akil')
+        .where('age', isGreaterThan: 30)
+        .get()
+        .then((value) => print('hell0'));
+    // FirebaseFirestore.instance
+    //     .collection('new user')
+    //     .get()
+    //     .then((QuerySnapshot querySnapshot) => {
+    //           querySnapshot.docs.forEach((doc) {
+    //             print(doc["name"]);
+    //           })
+    //         });
     Future<void> addUser() {
       return users
-          .add({'name': name, 'age': age})
+          .doc('yes $counter')
+          .set({'name': 'changed name', 'age': age})
           .then((value) => print('Sucessfull'))
           .catchError((error) => print('Failed due to $error'));
+    }
+
+    Future<void> deleteUser() {
+      return users.doc('yes $counter').delete();
     }
 
     return MaterialApp(
@@ -30,11 +49,46 @@ class MyHomePage extends StatelessWidget {
           title: Text('Welcome to Flutter'),
         ),
         body: Center(
-          child: TextButton(
-            onPressed: addUser,
-            child: Text('Add User'),
-          ),
-        ),
+            child: Column(
+          children: [
+            TextButton(
+                onPressed: () {
+                  addUser();
+                  counter = counter + 1;
+                },
+                child: Text('adduser')),
+            TextButton(
+                onPressed: () {
+                  deleteUser();
+                  counter = counter - 1;
+                },
+                child: Text('deleteUser')),
+            StreamBuilder<QuerySnapshot>(
+              stream: users.snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Something went wrong');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text("Loading");
+                }
+
+                return new ListView(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children: snapshot.data.docs.map((DocumentSnapshot document) {
+                    return new ListTile(
+                      title: new Text(document.data()['name']),
+                      subtitle: new Text(document.data()['age']),
+                    );
+                  }).toList(),
+                );
+              },
+            ),
+          ],
+        )),
       ),
     );
   }
