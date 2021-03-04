@@ -1,6 +1,6 @@
 # flutterfire
 
-A new Flutter application.
+Test application to learn firebase 
 
 ## Getting Started
 
